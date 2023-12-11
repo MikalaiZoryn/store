@@ -1,5 +1,5 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/meepler_db
-    username: meepler_user
+    url: jdbc:postgresql://localhost:5432/store_db
+    username: postgres
     password: 1488
