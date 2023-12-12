@@ -23,7 +23,9 @@ public class Item {
 
   }
 
-  public Item(String name, String category, String description, double rating, BigDecimal price) {
+  private Item(Long id, String name, String category, String description, double rating,
+      BigDecimal price) {
+    this.id = id;
     this.name = name;
     this.category = category;
     this.description = description;
@@ -31,13 +33,51 @@ public class Item {
     this.price = price;
   }
 
-  public Item(Long id, String name, String category, String description, double rating, BigDecimal price) {
-    this.id = id;
-    this.name = name;
-    this.category = category;
-    this.description = description;
-    this.rating = rating;
-    this.price = price;
+  public static class Builder {
+    private Long id;
+    private String name;
+    private String category;
+    private String description;
+    private double rating;
+    private BigDecimal price;
+
+    public static Builder newBuilder() {
+      return new Builder();
+    }
+
+    public Builder setId(Long value) {
+      this.id = value;
+      return this;
+    }
+
+    public Builder setName(String value) {
+      this.name = value;
+      return this;
+    }
+
+    public Builder setCategory(String value) {
+      this.category = value;
+      return this;
+    }
+
+    public Builder setDescription(String value) {
+      this.description = value;
+      return this;
+    }
+
+    public Builder setRating(Double value) {
+      this.rating = value;
+      return this;
+    }
+
+    public Builder setPrice(BigDecimal value) {
+      this.price = value;
+      return this;
+    }
+
+    public Item build() {
+      return new Item(id, name, category, description, rating, price);
+    }
   }
 
   public Long getId() {

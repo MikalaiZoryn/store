@@ -36,7 +36,8 @@ public class ItemSpreadsheetController {
 
   @GetMapping("/items/spreadsheet")
   ResponseEntity<File> getItemsSpreadsheet() throws IOException {
-    return null;
+    itemService.downloadItems();
+    return ResponseEntity.ok().build();
   }
 
   @PostMapping("/items/spreadsheet")

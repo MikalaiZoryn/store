@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,5 +21,9 @@ public class FileService {
       throw new IllegalArgumentException("Exception happened during file conversion", exception);
     }
     return spreadsheetFile;
+  }
+
+  public void saveSpreadsheetToFile(Workbook spreadsheet) {
+
   }
 }
