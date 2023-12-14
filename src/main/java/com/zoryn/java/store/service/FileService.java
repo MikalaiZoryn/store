@@ -24,6 +24,16 @@ public class FileService {
   }
 
   public void saveSpreadsheetToFile(Workbook spreadsheet) {
+    try {
+      File currDir = new File(".");
+      String path = currDir.getAbsolutePath();
+      String fileLocation = path.substring(0, path.length() - 1) + "temp.xlsx";
 
+      FileOutputStream outputStream = new FileOutputStream(fileLocation);
+      spreadsheet.write(outputStream);
+      spreadsheet.close();
+    } catch (Exception e) {
+      System.out.println("exception: " + e.getMessage());
+    }
   }
 }
