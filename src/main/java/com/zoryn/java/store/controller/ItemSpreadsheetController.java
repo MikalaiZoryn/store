@@ -20,11 +20,13 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
+@RequestMapping("/items/spreadsheet")
 public class ItemSpreadsheetController {
 
   private final ItemService itemService;
@@ -34,13 +36,13 @@ public class ItemSpreadsheetController {
     this.itemService = itemService;
   }
 
-  @GetMapping("/items/spreadsheet")
+  @GetMapping
   ResponseEntity<File> getItemsSpreadsheet() throws IOException {
     itemService.downloadItems();
     return ResponseEntity.ok().build();
   }
 
-  @PostMapping("/items/spreadsheet")
+  @PostMapping
   ImmutableList<Item> uploadItemsSpreadsheet(@RequestParam("file") MultipartFile multipartFile) {
     return itemService.uploadItems(multipartFile);
   }

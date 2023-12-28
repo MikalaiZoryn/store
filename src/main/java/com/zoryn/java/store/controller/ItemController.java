@@ -3,27 +3,28 @@ package com.zoryn.java.store.controller;
 import com.google.common.collect.ImmutableList;
 import com.zoryn.java.store.model.Item;
 import com.zoryn.java.store.repository.ItemRepository;
-import java.math.BigDecimal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/items")
 public class ItemController {
+  private final ItemRepository itemRepository;
 
   @Autowired
-  private ItemRepository itemRepository;
-
-  ItemController() {
+  ItemController(ItemRepository itemRepository) {
+    this.itemRepository = itemRepository;
   }
 
-  @GetMapping("/items")
+  @GetMapping
   ImmutableList<Item> getAllItems() {
     return ImmutableList.copyOf(itemRepository.findAll());
   }
 
-  @GetMapping("/items/{id}")
+  @GetMapping("{id}")
   Item getItem(@PathVariable Long id) {
     return itemRepository.findById(id).orElseThrow();
   }
