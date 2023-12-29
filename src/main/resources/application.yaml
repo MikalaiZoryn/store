@@ -9,3 +9,9 @@ spring:
   datasource:
     platform: postgres
     driverClassName: org.postgresql.Driver
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
