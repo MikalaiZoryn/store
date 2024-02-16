@@ -10,9 +10,9 @@
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
   <groupId>com.zoryn</groupId>
-  <artifactId>itemservice</artifactId>
+  <artifactId>orderservice</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>Item Service</name>
+  <name>Order Service</name>
   <description>Spring Boot application for Item Service</description>
   <properties>
     <java.version>17</java.version>
