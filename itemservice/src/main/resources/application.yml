@@ -1,6 +1,13 @@
 spring:
   application:
     name: item-service
-
+---
+spring:
   config:
+    activate.on-profile: local
     import: optional:configserver:http://localhost:8888
+---
+spring:
+  config:
+    activate.on-profile: k8s
+    import: optional:configserver://config-server:8888
