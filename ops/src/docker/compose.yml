@@ -1,0 +1,56 @@
+services:
+  config-server:
+    container_name: config-server
+    image: mikalaizoryn/config-server:0.0.1
+  eureka-server:
+    container_name: eureka-server
+    image: mikalaizoryn/eureka-server:0.0.1
+    ports:
+      - "8761:8761"
+  item-service:
+    container_name: item-service
+    image: mikalaizoryn/item-service:0.0.2
+    ports:
+      - "8001:8001"
+    environment:
+      - SPRING_PROFILES_ACTIVE=k8s
+    depends_on:
+      - postgres
+      - config-server
+      - eureka-server
+    restart: on-failure:5
+  order-service:
+    container_name: order-service
+    image: mikalaizoryn/order-service:0.0.2
+    ports:
+      - "8002:8002"
+    environment:
+      - SPRING_PROFILES_ACTIVE=k8s
+    depends_on:
+      - postgres
+      - config-server
+      - eureka-server
+    restart: on-failure:5
+  user-service:
+    container_name: user-service
+    image: mikalaizoryn/user-service:0.0.2
+    ports:
+      - "8003:8003"
+    environment:
+      - SPRING_PROFILES_ACTIVE=k8s
+    depends_on:
+      - postgres
+      - config-server
+      - eureka-server
+    restart: on-failure:5
+  postgres:
+    container_name: postgres
+    image: postgres:16.2
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=root
+    volumes:
+      - pgdata-volume:/var/lib/postgresql/data
+volumes:
+  pgdata-volume:
