@@ -1,15 +1,15 @@
 services:
   config-server:
     container_name: config-server
-    image: mikalaizoryn/config-server:0.0.1
+    image: mikalaizoryn/config-server:0.0.2
   eureka-server:
     container_name: eureka-server
-    image: mikalaizoryn/eureka-server:0.0.1
+    image: mikalaizoryn/eureka-server:0.0.2
     ports:
       - "8761:8761"
   item-service:
     container_name: item-service
-    image: mikalaizoryn/item-service:0.0.2
+    image: mikalaizoryn/item-service:0.0.3
     ports:
       - "8001:8001"
     environment:
@@ -21,7 +21,7 @@ services:
     restart: on-failure:5
   order-service:
     container_name: order-service
-    image: mikalaizoryn/order-service:0.0.2
+    image: mikalaizoryn/order-service:0.0.3
     ports:
       - "8002:8002"
     environment:
@@ -33,7 +33,7 @@ services:
     restart: on-failure:5
   user-service:
     container_name: user-service
-    image: mikalaizoryn/user-service:0.0.2
+    image: mikalaizoryn/user-service:0.0.3
     ports:
       - "8003:8003"
     environment:
