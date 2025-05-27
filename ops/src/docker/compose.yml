@@ -30,7 +30,7 @@ services:
       - postgres
       - config-server
       - eureka-server
-    restart: on-failure:5
+    restart: on-failure:6
   user-service:
     container_name: user-service
     image: mikalaizoryn/user-service:latest
