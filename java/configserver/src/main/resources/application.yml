@@ -7,4 +7,4 @@ spring:
       server.git.uri: "https://github.com/MikalaiZoryn/Store_Config"
       server:
         git:
-          default-label: master
+          default-label: masterok
