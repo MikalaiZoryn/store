@@ -52,8 +52,9 @@ jobs:
       run: |
         for SERVICE in ${{ steps.changes.outputs.changed_services }}; do
           echo "Building $SERVICE"
-          ./mvnw -f java/$SERVICE spring-boot:build-image \
-            -Dspring-boot.build-image.imageName=${{ secrets.DOCKER_USERNAME }}/SERVICE:latest
+          chmod +x ./java/$SERVICE/mvnw
+          ./java/$SERVICE/mvnw -f java/$SERVICE spring-boot:build-image \
+            -Dspring-boot.build-image.imageName=${{ secrets.DOCKER_USERNAME }}/$SERVICE:latest
 
           docker push ${{ secrets.DOCKER_USERNAME }}/$SERVICE:latest
         done
