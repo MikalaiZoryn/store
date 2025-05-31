@@ -47,6 +47,10 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
+    - name: Set up Docker
+      if: steps.should-skip.outputs.skip == 'false'
+      uses: docker/setup-docker@v3
+
     - name: Build and Push Changed Services
       if: steps.should-skip.outputs.skip == 'false'
       run: |
